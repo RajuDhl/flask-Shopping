@@ -1,0 +1,6 @@
+FLASK_APP=app
+FLASK_ENV=development
+DATABASE_URL=postgresql://repouser:s3cret@localhost/repolog
+EMAIL_API=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
+SENDGRID_API_KEY=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
+SAME_DAY_DOMAIN=https://same-day-auto.azurewebsites.net

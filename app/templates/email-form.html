@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container-fluid min-vh-100">
+        <div class="row" style="margin-top:9%;">
+                <div class="col-xs-12 col-sm-12 col-md-4, col-lg-2 mx-auto">
+                    <h3><b>{{ data['title'] }}</b></h3>
+                    <br/>
+                    <form method="POST" action="{{ data['form_action'] }}">
+                        <h4>{{ data['form_description'] }}</h4>
+                        <br/>
+                        <div class="form-group">
+                            <input type="email" class="form-control" name="email" placeholder="Email address"
+                                   autocomplete="email" tabindex="1" autofocus required>
+                        </div>
+                        <br/>
+                        <button type="submit" class="btn btn-dark" tabindex="2"><b>{{ data['button_message'] }}</b></button>
+                    </form><br/>
+                    <br/>
+                    <a href="{{ data['after_link_href'] }}">{{ data['after_link_text'] }}</a>
+                    <br/><br/>
+                    {% if message %}
+                        <div class="alert alert-warning">{{message}}</div>
+                    {% endif %}
+                </div>
+        </div>
+    </div>
+{% endblock %}

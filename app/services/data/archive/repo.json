@@ -1,0 +1,854 @@
+{
+  "1002.1": {
+    "awv": 5000,
+    "eom_gaap_proceeds_estimate": 0,
+    "balance_repo_date": 12637.18,
+    "loan": 1002.1,
+    "cash_or_new_ac": "CASH",
+    "location": "SOLD",
+    "back_end_product_cancellation": 0,
+    "sold_to": "TEXAS CAN",
+    "acct_sold_month": "Oct-13",
+    "gaap_date": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1358967599,
+        "_nanoseconds": 99000
+      }
+    },
+    "name": "",
+    "dafs": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1360004399,
+        "_nanoseconds": 99000
+      }
+    },
+    "make": "FORD",
+    "acct_diff": -0.25,
+    "insurance_claims": 0,
+    "noi_sent": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1358967599,
+        "_nanoseconds": 99000
+      }
+    },
+    "co_date": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1383159599,
+        "_nanoseconds": 99000
+      }
+    },
+    "reason": "",
+    "unearned_discount": 1496.515342,
+    "recovery": 0,
+    "mmr": null,
+    "gross_co_amt": -8887.18,
+    "current_mo_proceeds_estimate": 0,
+    "date_sold": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1383159599,
+        "_nanoseconds": 99000
+      }
+    },
+    "chargeable_damages": 0,
+    "net_loss_or_gain": -7390.664658,
+    "acct_repo_month": "Jan-13",
+    "cash_price": null,
+    "rem_bal": -7390.664658,
+    "true_up_amount": "",
+    "months_in_inventory": 99.3,
+    "actual_proceeds": 3750,
+    "vin": "",
+    "model": "EXPEDITION",
+    "Account_Number": 1,
+    "customer_name": "",
+    "status": "Sold",
+    "exception_detail": "",
+    "acct_gain_loss": -1250,
+    "exception": "",
+    "estimated_recovery": null,
+    "same_month_sale": "0",
+    "acct_min_val": 5000,
+    "notes": "",
+    "true_up_transaction": "1",
+    "mileage": null,
+    "dealer": "Q MOTORCARS",
+    "cr_grade": null,
+    "year": 2006,
+    "__collections__": {}
+  },
+  "1003.1": {
+    "reason": "INSURANCE DEFICIENCY",
+    "gross_co_amt": -2267.84,
+    "dafs": null,
+    "months_in_inventory": 88,
+    "mmr": null,
+    "acct_gain_loss": null,
+    "true_up_transaction": "0",
+    "estimated_recovery": null,
+    "unearned_discount": 648.42,
+    "cash_price": null,
+    "back_end_product_cancellation": 0,
+    "gaap_date": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1388170799,
+        "_nanoseconds": 99000
+      }
+    },
+    "exception": "",
+    "same_month_sale": "0",
+    "customer_name": "",
+    "year": null,
+    "balance_repo_date": 2267.84,
+    "location": "",
+    "noi_sent": null,
+    "name": "",
+    "notes": "",
+    "mileage": null,
+    "make": "",
+    "Account_Number": 1,
+    "acct_diff": null,
+    "cr_grade": null,
+    "insurance_claims": 0,
+    "sold_to": "",
+    "recovery": 0,
+    "actual_proceeds": null,
+    "current_mo_proceeds_estimate": 0,
+    "acct_sold_month": null,
+    "chargeable_damages": 0,
+    "status": "OCO",
+    "net_loss_or_gain": -1619.42,
+    "date_sold": null,
+    "acct_min_val": null,
+    "model": "",
+    "acct_repo_month": "Dec-13",
+    "true_up_amount": "",
+    "eom_gaap_proceeds_estimate": 0,
+    "dealer": "N TX AUTOS",
+    "rem_bal": -1619.42,
+    "vin": "",
+    "co_date": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1403290799,
+        "_nanoseconds": 99000
+      }
+    },
+    "loan": 1003.1,
+    "cash_or_new_ac": "",
+    "awv": null,
+    "exception_detail": "",
+    "__collections__": {}
+  },
+  "1005.1": {
+    "back_end_product_cancellation": 0,
+    "acct_repo_month": "Mar-15",
+    "chargeable_damages": 0,
+    "mileage": 173180,
+    "notes": "",
+    "same_month_sale": "0",
+    "model": "NITRO",
+    "dealer": "MIDCITY",
+    "recovery": 0,
+    "mmr": 6275,
+    "net_loss_or_gain": -7520.58,
+    "reason": "",
+    "unearned_discount": 542.46,
+    "awv": 10475,
+    "dafs": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1426532399,
+        "_nanoseconds": 99000
+      }
+    },
+    "true_up_transaction": "1",
+    "Account_Number": 1,
+    "exception": "",
+    "acct_min_val": 6275,
+    "make": "DODGE",
+    "loan": 1005.1,
+    "exception_detail": "",
+    "current_mo_proceeds_estimate": 0,
+    "acct_diff": -0.36254980079681276,
+    "cash_or_new_ac": "CASH",
+    "sold_to": "MONTE HALE",
+    "co_date": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1438196399,
+        "_nanoseconds": 99000
+      }
+    },
+    "gaap_date": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1425668399,
+        "_nanoseconds": 99000
+      }
+    },
+    "year": 2008,
+    "vin": "1D8GU58628W118182",
+    "noi_sent": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1425668399,
+        "_nanoseconds": 99000
+      }
+    },
+    "acct_sold_month": "Jul-15",
+    "estimated_recovery": null,
+    "eom_gaap_proceeds_estimate": 4017.36,
+    "date_sold": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1438109999,
+        "_nanoseconds": 99000
+      }
+    },
+    "gross_co_amt": -8063.04,
+    "months_in_inventory": 73.5,
+    "customer_name": "",
+    "rem_bal": -7520.58,
+    "balance_repo_date": 12063.04,
+    "actual_proceeds": 4000,
+    "name": "",
+    "status": "Sold",
+    "cash_price": 7500,
+    "cr_grade": null,
+    "acct_gain_loss": -2275,
+    "insurance_claims": 0,
+    "location": "MIDCITY",
+    "true_up_amount": "",
+    "__collections__": {}
+  },
+  "1008.1": {
+    "acct_min_val": 7425,
+    "exception": "",
+    "notes": "",
+    "actual_proceeds": 7383,
+    "rem_bal": -1362.496219,
+    "gaap_date": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1385233199,
+        "_nanoseconds": 99000
+      }
+    },
+    "dafs": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1386269999,
+        "_nanoseconds": 99000
+      }
+    },
+    "back_end_product_cancellation": 0,
+    "acct_sold_month": "Dec-13",
+    "current_mo_proceeds_estimate": 0,
+    "eom_gaap_proceeds_estimate": 0,
+    "name": "",
+    "acct_diff": -0.0056565656565656566,
+    "noi_sent": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1385405999,
+        "_nanoseconds": 99000
+      }
+    },
+    "cr_grade": null,
+    "chargeable_damages": 0,
+    "co_date": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1390935599,
+        "_nanoseconds": 99000
+      }
+    },
+    "balance_repo_date": 9825.37,
+    "acct_repo_month": "Nov-13",
+    "loan": 1008.1,
+    "estimated_recovery": null,
+    "make": "NISSAN",
+    "exception_detail": "",
+    "dealer": "DESTINY",
+    "net_loss_or_gain": -1362.496219,
+    "unearned_discount": 1079.873781,
+    "year": 2007,
+    "mmr": null,
+    "sold_to": "MIDCITY",
+    "date_sold": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1386615599,
+        "_nanoseconds": 99000
+      }
+    },
+    "awv": 7425,
+    "months_in_inventory": 89.1,
+    "gross_co_amt": -2442.37,
+    "location": "SOLD",
+    "cash_or_new_ac": "ACCT 1820",
+    "status": "Sold",
+    "vin": "",
+    "Account_Number": 1,
+    "recovery": 0,
+    "reason": "",
+    "cash_price": null,
+    "mileage": 112900,
+    "insurance_claims": 0,
+    "acct_gain_loss": -42,
+    "customer_name": "",
+    "true_up_transaction": "1",
+    "same_month_sale": "0",
+    "true_up_amount": "",
+    "model": "ALTIMA",
+    "__collections__": {}
+  },
+  "1011.1": {
+    "name": "",
+    "gross_co_amt": -4110.55,
+    "Account_Number": 1,
+    "reason": "",
+    "mileage": 132677,
+    "exception": "",
+    "true_up_transaction": "1",
+    "acct_diff": -0.03003831417624521,
+    "loan": 1011.1,
+    "cr_grade": null,
+    "chargeable_damages": 0,
+    "acct_min_val": 6525,
+    "gaap_date": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1393613999,
+        "_nanoseconds": 99000
+      }
+    },
+    "acct_repo_month": "Feb-14",
+    "mmr": null,
+    "eom_gaap_proceeds_estimate": 0,
+    "rem_bal": -2860.17,
+    "cash_or_new_ac": "ACCT 1992",
+    "back_end_product_cancellation": 0,
+    "vin": "",
+    "estimated_recovery": null,
+    "dafs": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1393613999,
+        "_nanoseconds": 99000
+      }
+    },
+    "awv": 6525,
+    "notes": "",
+    "insurance_claims": 0,
+    "noi_sent": null,
+    "location": "SOLD",
+    "current_mo_proceeds_estimate": 0,
+    "acct_gain_loss": -196,
+    "status": "Sold",
+    "sold_to": "HEB",
+    "actual_proceeds": 6329,
+    "unearned_discount": 1250.38,
+    "year": 2008,
+    "co_date": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1404241199,
+        "_nanoseconds": 99000
+      }
+    },
+    "acct_sold_month": "Mar-14",
+    "customer_name": "",
+    "net_loss_or_gain": -2860.17,
+    "cash_price": null,
+    "exception_detail": "",
+    "date_sold": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1394305199,
+        "_nanoseconds": 99000
+      }
+    },
+    "balance_repo_date": 10439.55,
+    "recovery": 0,
+    "model": "SABLE",
+    "make": "MERCURY",
+    "months_in_inventory": 85.9,
+    "same_month_sale": "0",
+    "true_up_amount": "",
+    "dealer": "MIDCITY",
+    "__collections__": {}
+  },
+  "1013.1": {
+    "reason": "",
+    "year": 2002,
+    "customer_name": "",
+    "mmr": null,
+    "location": "SOLD",
+    "true_up_amount": "",
+    "same_month_sale": "0",
+    "loan": 1013.1,
+    "dealer": "All PRO",
+    "gaap_date": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1358189999,
+        "_nanoseconds": 99000
+      }
+    },
+    "acct_repo_month": "Jan-13",
+    "acct_min_val": null,
+    "name": "",
+    "vin": "",
+    "cash_price": null,
+    "rem_bal": -117.4508493,
+    "noi_sent": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1358189999,
+        "_nanoseconds": 99000
+      }
+    },
+    "mileage": null,
+    "acct_diff": null,
+    "unearned_discount": 1373.189151,
+    "recovery": 0,
+    "exception": "",
+    "months_in_inventory": 99.6,
+    "dafs": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1359053999,
+        "_nanoseconds": 99000
+      }
+    },
+    "insurance_claims": 0,
+    "chargeable_damages": 0,
+    "sold_to": "ALL PRO",
+    "Account_Number": 1,
+    "make": "HONDA",
+    "acct_sold_month": "Mar-13",
+    "actual_proceeds": 6589,
+    "back_end_product_cancellation": 0,
+    "exception_detail": "",
+    "awv": null,
+    "date_sold": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1363028399,
+        "_nanoseconds": 99000
+      }
+    },
+    "status": "Sold",
+    "cash_or_new_ac": "ACCT 1252",
+    "estimated_recovery": null,
+    "acct_gain_loss": null,
+    "notes": "",
+    "eom_gaap_proceeds_estimate": 0,
+    "cr_grade": null,
+    "co_date": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1364151599,
+        "_nanoseconds": 99000
+      }
+    },
+    "model": "CRV",
+    "true_up_transaction": "1",
+    "balance_repo_date": 8079.64,
+    "gross_co_amt": -1490.64,
+    "net_loss_or_gain": -117.4508493,
+    "current_mo_proceeds_estimate": 0,
+    "__collections__": {}
+  },
+  "1014.1": {
+    "gross_co_amt": -2387.53,
+    "loan": 1014.1,
+    "acct_repo_month": "Aug-13",
+    "back_end_product_cancellation": 0,
+    "customer_name": "",
+    "location": "SOLD",
+    "year": 2006,
+    "recovery": 0,
+    "cash_or_new_ac": "ACCT 1738",
+    "Account_Number": 1,
+    "actual_proceeds": 6157,
+    "dealer": "AUTO LIMITS",
+    "vin": "",
+    "gaap_date": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1377802799,
+        "_nanoseconds": 99000
+      }
+    },
+    "mileage": null,
+    "balance_repo_date": 8544.53,
+    "model": "PASSAT",
+    "estimated_recovery": null,
+    "chargeable_damages": 0,
+    "status": "Sold",
+    "exception": "",
+    "insurance_claims": 0,
+    "cr_grade": null,
+    "date_sold": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1382036399,
+        "_nanoseconds": 99000
+      }
+    },
+    "same_month_sale": "0",
+    "acct_gain_loss": 607,
+    "sold_to": "MIDCITY",
+    "months_in_inventory": 92,
+    "exception_detail": "",
+    "unearned_discount": 877.4865753,
+    "cash_price": null,
+    "acct_sold_month": "Oct-13",
+    "reason": "",
+    "make": "VW",
+    "current_mo_proceeds_estimate": 0,
+    "true_up_amount": "",
+    "acct_min_val": 5550,
+    "rem_bal": -1510.043425,
+    "awv": 5550,
+    "co_date": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1385751599,
+        "_nanoseconds": 99000
+      }
+    },
+    "net_loss_or_gain": -1510.043425,
+    "mmr": null,
+    "acct_diff": 0.10936936936936936,
+    "notes": "",
+    "name": "",
+    "noi_sent": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1377802799,
+        "_nanoseconds": 99000
+      }
+    },
+    "true_up_transaction": "1",
+    "eom_gaap_proceeds_estimate": 0,
+    "dafs": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1378753199,
+        "_nanoseconds": 99000
+      }
+    },
+    "__collections__": {}
+  },
+  "1018.1": {
+    "true_up_transaction": "1",
+    "location": "COPART",
+    "Account_Number": 1,
+    "year": 2006,
+    "customer_name": "",
+    "model": "PASSAT",
+    "acct_diff": -0.75,
+    "acct_min_val": 4000,
+    "cash_price": 4000,
+    "true_up_amount": "",
+    "gaap_date": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1399316399,
+        "_nanoseconds": 99000
+      }
+    },
+    "back_end_product_cancellation": 0,
+    "loan": 1018.1,
+    "rem_bal": -4489.01,
+    "dafs": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1399316399,
+        "_nanoseconds": 99000
+      }
+    },
+    "cash_or_new_ac": "CASH",
+    "current_mo_proceeds_estimate": 0,
+    "eom_gaap_proceeds_estimate": 0,
+    "vin": "WVWAK73C26P153704",
+    "mileage": 130799,
+    "actual_proceeds": 1000,
+    "unearned_discount": 701.18,
+    "balance_repo_date": 6190.19,
+    "estimated_recovery": null,
+    "insurance_claims": 0,
+    "mmr": 4639,
+    "same_month_sale": "0",
+    "recovery": 0,
+    "gross_co_amt": -5190.19,
+    "dealer": "REAGOR AUTO MALL",
+    "exception": "",
+    "notes": "",
+    "chargeable_damages": 0,
+    "cr_grade": null,
+    "reason": "",
+    "net_loss_or_gain": -4489.01,
+    "name": "",
+    "awv": 4400,
+    "acct_sold_month": "Apr-15",
+    "make": "VOLKSWAGEN",
+    "co_date": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1430333999,
+        "_nanoseconds": 99000
+      }
+    },
+    "acct_gain_loss": -3000,
+    "sold_to": "MONTY HALE",
+    "acct_repo_month": "May-14",
+    "months_in_inventory": 83.7,
+    "status": "Sold",
+    "exception_detail": "",
+    "noi_sent": null,
+    "date_sold": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1430333999,
+        "_nanoseconds": 99000
+      }
+    },
+    "__collections__": {}
+  },
+  "1019.1": {
+    "sold_to": "TEXAS CAN",
+    "notes": "",
+    "recovery": 0,
+    "Account_Number": 1,
+    "dealer": "JENO",
+    "mileage": 102922,
+    "months_in_inventory": 86.8,
+    "vin": "",
+    "estimated_recovery": null,
+    "current_mo_proceeds_estimate": 0,
+    "model": "JETTA",
+    "gaap_date": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1391194799,
+        "_nanoseconds": 99000
+      }
+    },
+    "reason": "",
+    "date_sold": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1413399599,
+        "_nanoseconds": 99000
+      }
+    },
+    "cr_grade": null,
+    "same_month_sale": "0",
+    "actual_proceeds": 1950,
+    "rem_bal": -4359.49,
+    "status": "Sold",
+    "true_up_transaction": "1",
+    "noi_sent": null,
+    "cash_price": null,
+    "net_loss_or_gain": -4359.49,
+    "mmr": null,
+    "loan": 1019.1,
+    "chargeable_damages": 0,
+    "awv": 5450,
+    "exception": "",
+    "cash_or_new_ac": "CASH",
+    "name": "",
+    "make": "VOLKSWAGEN",
+    "true_up_amount": "",
+    "balance_repo_date": 7085.79,
+    "year": 2006,
+    "acct_gain_loss": -3500,
+    "insurance_claims": 0,
+    "dafs": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1391194799,
+        "_nanoseconds": 99000
+      }
+    },
+    "exception_detail": "",
+    "co_date": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1413399599,
+        "_nanoseconds": 99000
+      }
+    },
+    "location": "Q MOTORCARS",
+    "acct_diff": -0.6422018348623854,
+    "back_end_product_cancellation": 0,
+    "unearned_discount": 776.3,
+    "acct_sold_month": "Oct-14",
+    "customer_name": "",
+    "eom_gaap_proceeds_estimate": 0,
+    "acct_min_val": 5450,
+    "acct_repo_month": "Jan-14",
+    "gross_co_amt": -5135.79,
+    "__collections__": {}
+  },
+  "3824.1": {
+      "loan": 3824.1,
+      "cr_grade": null,
+      "year": 2011,
+      "acct_gain_loss": 0,
+      "cash_price": 8800,
+      "model": "Ram",
+      "actual_proceeds": 0,
+      "customer_name": "AUSTIN BROWN",
+      "current_mo_proceeds_estimate": null,
+      "acct_sold_month": null,
+      "mmr": 8800,
+      "chargeable_damages": null,
+      "vin": "1D7RV1GT6BS640788",
+      "unearned_discount": 77.64,
+      "last_update": {
+        "__datatype__": "timestamp",
+        "value": {
+          "_seconds": 1610209790,
+          "_nanoseconds": 835931000
+        }
+      },
+      "dealer": "THE CAR GUY",
+      "mileage": 131239,
+      "dafs": {
+        "__datatype__": "timestamp",
+        "value": {
+          "_seconds": 1610689920,
+          "_nanoseconds": 0
+        }
+      },
+      "status": "Reinstate",
+      "balance_repo_date": 12322.35,
+      "awv": null,
+      "estimated_recovery": 0.71,
+      "location": "CARS",
+      "gross_co_amt": -6074.35,
+      "repo_category": [
+        "Skip"
+      ],
+      "net_loss_or_gain": -5996.71,
+      "gaap_date": {
+        "__datatype__": "timestamp",
+        "value": {
+          "_seconds": 1609825920,
+          "_nanoseconds": 0
+        }
+      },
+      "sold_to": "",
+      "co_date": null,
+      "acct_repo_month": "Jan-21",
+      "trim": "1500",
+      "months_in_inventory": null,
+      "last_editor": "kevin.atherton@samedayauto.net",
+      "insurance_claims": 0,
+      "acct_diff": 0,
+      "reason": "",
+      "date_sold": null,
+      "noi_sent": {
+        "__datatype__": "timestamp",
+        "value": {
+          "_seconds": 1609825920,
+          "_nanoseconds": 0
+        }
+      },
+      "Account_Number": 1,
+      "acct_min_val": 0,
+      "date_reinstate": {
+        "__datatype__": "timestamp",
+        "value": {
+          "_seconds": 1610171520,
+          "_nanoseconds": 0
+        }
+      },
+      "notes": "",
+      "back_end_product_cancellations": 0,
+      "eom_gaap_proceeds_estimate": null,
+      "make": "DODGE",
+      "__collections__": {}
+    },
+  "5598.1": {
+    "model": "CLS",
+    "months_in_inventory": 4.3,
+    "co_date": null,
+    "reason": "",
+    "estimated_recovery": null,
+    "same_month_sale": "",
+    "customer_name": "",
+    "loan": 5598.1,
+    "net_loss_or_gain": null,
+    "sold_to": "",
+    "chargeable_damages": 0,
+    "location": "",
+    "dafs": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1595530799,
+        "_nanoseconds": 99000
+      }
+    },
+    "status": "Reinstate",
+    "repo_allow2_(hist)": "",
+    "mileage": null,
+    "gaap_date": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1594666799,
+        "_nanoseconds": 99000
+      }
+    },
+    "cash_or_new_ac": "",
+    "balance_repo_date": 4517.79,
+    "min_val": "",
+    "date_sold": null,
+    "cr_grade": null,
+    "insurance_claims": 0,
+    "gain_(loss)": "",
+    "noi_sent": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1594666799,
+        "_nanoseconds": 99000
+      }
+    },
+    "exception": "",
+    "year": 2006,
+    "mmr": null,
+    "exception_detail": "",
+    "dealer": "CARCHOICE DFW",
+    "name": "",
+    "vin": "WDDDJ75XX6A022822",
+    "recovery": null,
+    "unearned_discount": 0,
+    "acct_min_val": null,
+    "diff": "",
+    "acct_repo_month": "Jul-20",
+    "back_end_product_cancellation": 0,
+    "current_mo_proceeds_estimate": null,
+    "gross_co_amt": null,
+    "notes": "",
+    "Account_Number": 1,
+    "awv": null,
+    "actual_proceeds": null,
+    "rem_bal": null,
+    "make": "MERCEDES",
+    "repo_mo": "Jul-20",
+    "eom_gaap_proceeds_estimate": null,
+    "cash_price": null,
+    "__collections__": {}
+  }
+}

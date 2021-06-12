@@ -1,0 +1,117 @@
+{
+  "101": {
+    "name": "ARREAGA  LUDIN ",
+    "account_number": 1,
+    "comments": "",
+    "gap_or_warr_cancelation_required": "",
+    "ttl-cntrct_sent": null,
+    "date_pif": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1317236399,
+        "_nanoseconds": 99000
+      }
+    },
+    "date_canceled": null,
+    "method": "",
+    "op_sent": null,
+    "status": "LOAN SOLD",
+    "customer_number": "101",
+    "unnamed:_12": "",
+    "op": "",
+    "ttl-cntrct_recd": null,
+    "__collections__": {}
+  },
+  "102": {
+    "gap_or_warr_cancelation_required": "",
+    "unnamed:_12": "",
+    "op_sent": null,
+    "date_canceled": null,
+    "customer_number": "102",
+    "comments": "",
+    "account_number": 1,
+    "name": "RIDER  CHRISTOPHER ",
+    "ttl-cntrct_sent": null,
+    "op": "",
+    "ttl-cntrct_recd": null,
+    "date_pif": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1317236399,
+        "_nanoseconds": 99000
+      }
+    },
+    "method": "",
+    "status": "LOAN SOLD",
+    "__collections__": {}
+  },
+  "103": {
+    "date_canceled": null,
+    "status": "LOAN SOLD",
+    "gap_or_warr_cancelation_required": "",
+    "op": "",
+    "date_pif": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1325617199,
+        "_nanoseconds": 99000
+      }
+    },
+    "unnamed:_12": "",
+    "op_sent": null,
+    "ttl-cntrct_recd": null,
+    "name": "BUSH  SARA E",
+    "method": "",
+    "account_number": 1,
+    "customer_number": "103",
+    "comments": "",
+    "ttl-cntrct_sent": null,
+    "__collections__": {}
+  },
+  "104": {
+    "date_pif": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1317236399,
+        "_nanoseconds": 99000
+      }
+    },
+    "status": "LOAN SOLD",
+    "name": "SCOTT  PATRICIA ",
+    "ttl-cntrct_recd": null,
+    "unnamed:_12": "",
+    "comments": "",
+    "gap_or_warr_cancelation_required": "",
+    "ttl-cntrct_sent": null,
+    "date_canceled": null,
+    "op_sent": null,
+    "customer_number": "104",
+    "op": "",
+    "account_number": 1,
+    "method": "",
+    "__collections__": {}
+  },
+  "105": {
+    "ttl-cntrct_sent": null,
+    "customer_number": "105",
+    "name": "SANDERS  STENESHA ",
+    "op": "",
+    "status": "LOAN SOLD",
+    "comments": "",
+    "method": "",
+    "account_number": 1,
+    "date_canceled": null,
+    "date_pif": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1317236399,
+        "_nanoseconds": 99000
+      }
+    },
+    "op_sent": null,
+    "gap_or_warr_cancelation_required": "",
+    "ttl-cntrct_recd": null,
+    "unnamed:_12": "",
+    "__collections__": {}
+  }
+}

@@ -1,0 +1,437 @@
+{% extends "base.html" %}
+{% block content %}
+{% include 'nav.html' %}
+   <div class="container-fluid min-vh-100">
+        <div class="row" style="margin-top:2%;">
+            <div class="col-xs col-sm">
+                {% if data %}
+                    <span class="h4">Loan # {{ data['loan'] }}</span> <span class="text-muted" style="margin-left:15px;">{{ data['year'] }} {{ data['make'] }} {{ data['model'] }} {{ data['trim'] }}</span>
+                    <button class="btn btn-dark float-right mr-5"
+                            id="submit_button" onclick="postForm('/repo')"
+                            tabindex="27">Update Record</button>
+
+
+                    <button class="btn btn-outline-danger float-right mr-5"
+                            id="submit_button" onclick="deleteMe()"
+                            tabindex="38">Delete Record</button>
+                    {% if data['last_update'] and data['last_editor'] %}
+                        <br/><span class="text-muted" style="font-size:0.8em; ">Last edit: {{ data['last_update'].strftime('%m/%d/%y') }}
+                            by {{ data['last_editor'] }}
+                        </span>
+                    {% endif %}
+
+                {% else %}
+                    <span class="h4">New repossession</span> <span class="text-muted">{{ data['year'] }} {{ data['make'] }} {{ data['model'] }} {{ data['trim'] }}</span>
+                    <button class="btn btn-primary pull-right mr-5" type="submit"
+                            id="submit_button" onclick="postForm('/repo')"
+                            disabled tabindex="29">Save new repo</button>
+                {% endif %}
+            <br/>
+            <br/>
+            <br/>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-xl-3">
+
+                <div class="form-group">
+                    <label for="loan">Loan # <small class="text-muted pull-right">(Required)</small>
+                        <input type="text" class="form-control" name="loan"
+                               id="loan" tabindex="1" value="{{ data['loan'] }}" autofocus required oninput="check_required()">
+                    </label>
+                    <label for="status">Status
+                        <select class="form-control" name="status" id="status" tabindex="2">
+
+                            {% if data['status'] == 'Repo' %}
+                                <option value="Repo" selected>Repo</option>
+                                <option value="OCO">OCO</option>
+                                <option value="Sold">Sold</option>
+                                <option value="Reinstate">Reinstate</option>
+                            {% elif data['status'] == 'OCO'%}
+                                <option value="Repo">Repo</option>
+                                <option value="OCO" selected>OCO</option>
+                                <option value="Sold">Sold</option>
+                                <option value="Reinstate">Reinstate</option>
+                            {% elif data['status'] == 'Reinstate'%}
+                                <option value="Repo">Repo</option>
+                                <option value="OCO">OCO</option>
+                                <option value="Sold">Sold</option>
+                                <option value="Reinstate" selected>Reinstate</option>
+                            {% elif data['status'] == 'Sold'%}
+                                <option value="Repo">Repo</option>
+                                <option value="OCO">OCO</option>
+                                <option value="Sold" selected>Sold</option>
+                                <option value="Reinstate">Reinstate</option>
+                            {% else %}
+                                <option value="Repo" selected>Repo</option>
+                                <option value="OCO">OCO</option>
+                                <option value="Sold">Sold</option>
+                                <option value="Reinstate">Reinstate</option>
+                            {% endif %}
+                        </select>
+                    </label>
+                    <label for="repo_category">Repo Category
+                        <select class="form-control" id="repo_category" name="repo_category"  multiple="multiple">
+                            {% if data.categories %}
+                            {% for x in data.categories %}
+                                <option value="{{x}}" selected="">{{x}}</option>
+                            {%endfor%}
+                                <option value="Abandoned" >Abandoned</option>
+                                <option value="Bankruptcy">Bankruptcy</option>
+                                <option value="Divorce / Family" >Divorce / Family</option>
+                                <option value="Drugs / Jail">Drugs / Jail</option>
+                                <option value="Illness / Death">Illness / Death</option>
+                                <option value="Impound" >Impound</option>
+                                <option value="Insurance Deficiency">Insurance Deficiency</option>
+                                <option value="Job Loss / Income">Job Loss / Income</option>
+                                <option value="Mechanical" >Mechanical</option>
+                                <option value="No Insurance / Stolen">No Insurance / Stolen</option>
+                                <option value="No Insurance / Wreck" >No Insurance / Wreck</option>
+                                <option value="Stolen" >Stolen</option>
+                                <option value="Insurance deficiency" >Insurance deficiency</option>
+                                <option value="Mechanic" >Mechanic</option>
+                                <option value="Skip" >Skip</option>
+
+                            {%else%}
+                                <option value="Abandoned" >Abandoned</option>
+                                <option value="Bankruptcy">Bankruptcy</option>
+                                <option value="Divorce / Family" >Divorce / Family</option>
+                                <option value="Drugs / Jail">Drugs / Jail</option>
+                                <option value="Illness / Death">Illness / Death</option>
+                                <option value="Impound" >Impound</option>
+                                <option value="Insurance Deficiency">Insurance Deficiency</option>
+                                <option value="Job Loss / Income">Job Loss / Income</option>
+                                <option value="Mechanical" >Mechanical</option>
+                                <option value="No Insurance / Stolen">No Insurance / Stolen</option>
+                                <option value="No Insurance / Wreck" >No Insurance / Wreck</option>
+                                <option value="Stolen" >Stolen</option>
+                                <option value="Insurance deficiency" >Insurance deficiency</option>
+                                <option value="Mechanic" >Mechanic</option>
+                                <option value="Skip" >Skip</option>
+                            {%endif%}
+                        </select>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="vin">VIN <small class="text-muted pull-right">(Required)</small>
+                        <input type="text" class="form-control" name="vin" id="vin" value="{{ data['vin'] }}"
+                               oninput="decodeVin(this.value)" onload="decodeVin(this.value)" tabindex="3" required>
+                    </label>
+                    <div id="vin-decode" class="text-muted"></div>
+                </div>
+                <div class="form-group">
+                    <label for="dealer">Dealer
+                        <input type="text" class="form-control" name="dealer"
+                               id="dealer" tabindex="4" value="{{ data['dealer'] }}">
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label for="borrower">Customer Name
+                        <input type="text" class="form-control" name="customer_name"
+                               id="customer_name" tabindex="5" value="{{ data['customer_name'] }}">
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Location
+                        <input type="text" class="form-control" name="location"
+                               id="location" tabindex="6" value="{{ data['location'] }}">
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="sold-to">Sold to
+                        <input type="text" class="form-control" name="sold_to"
+                               id="sold_to" tabindex="7" value="{{ data['sold_to'] }}">
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="location">Notes
+                        <textarea cols="50" rows="4" class="form-control"
+                                  name="notes" id="notes" tabindex="8">{{ data['notes'] }}</textarea>
+                    </label>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-xl-2">
+
+                <div class="form-group">
+                    <label for="gaap-date">GAAP Date <small class="text-muted pull-right">(Required)</small>
+                        <input type="date" id="gaap_date" class="form-control" name="gaap_date"
+                               min="2019-01-01" tabindex="9"
+                               value="{{ data['gaap_date'].strftime('%Y-%m-%d') if data["gaap_date"] }}"
+                               onchange="calc_inv(this.value)" required>
+                    </label><br/>
+                    <span class="text-muted" style="font-size:0.8em;">Months in inventory: {{ data['months_in_inventory'] }}</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="noi-sent">NOI Sent
+                        <input type="date" id="noi_sent" class="form-control" name="noi_sent"
+                               min="2019-01-01" tabindex="10"
+                               value="{{ data['noi_sent'].strftime('%Y-%m-%d') if data["noi_sent"]}}">
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label for="dafs">DAFS
+                        <input type="date" id="dafs" class="form-control" name="dafs"
+                               min="2019-01-01" tabindex="11"
+                               value="{{ data['dafs'].strftime('%Y-%m-%d') if data["dafs"]}}">
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label for="date_sold">Date Sold
+                        <input type="date" id="date_sold" class="form-control" name="date_sold"
+                               min="2019-01-01" tabindex="12"
+                               value="{{ data['date_sold'].strftime('%Y-%m-%d') if data["date_sold"] }}"
+                               onchange="confirm_status('Sold')">
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label for="dafs">C/O Date
+                        <input type="date" id="co_date" name="co_date" class="form-control"
+                               min="2019-01-01" tabindex="13"
+                               value="{{ data['co_date'].strftime('%Y-%m-%d') if data["co_date"] }}"
+                               onchange="confirm_status('OCO')">
+                    </label>
+                </div>
+
+                    <div class="form-group">
+                    <label for="date_reinstate">Date Reinstated
+                        <input type="date" id="date_reinstate" name="date_reinstate" class="form-control"
+                               min="2019-01-01" tabindex="14"
+                               value="{{ data['date_reinstate'].strftime('%Y-%m-%d') if data['date_reinstate'] }}"
+                               onchange="confirm_status('Reinstate')">
+                    </label>
+                </div>
+
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-xl-3">
+
+                <div class="form-group">
+                    <label for="location">Mileage
+                        <input type="text" class="form-control" name="mileage" id="mileage" tabindex="15"
+                               value="{{ data['mileage' if data['mileage']] }}">
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label for="cr">CR Grade
+                        <input type="text" class="form-control" name="cr_grade"
+                               id="cr_grade" tabindex="16"
+                               value="{{ data['cr_grade'] if data['cr_grade'] }}">
+                    </label>
+                </div>
+                <label for="recovery">Estimated Recovery
+                 <div class="input-group mb-3">
+                        <input type="text" class="form-control form-control-sm" name="estimated_recovery"
+                               id="estimated_recovery" tabindex="17"
+                               value="{{ data['estimated_recovery']*100 if data['estimated_recovery']}}"
+                               oninput="calc_cmp()">
+                     <div class="input-group-append">
+                            <span class="input-group-text">%</span>
+                     </div>
+                </div>
+                </label>
+
+
+                <div style="border:2px solid rgba(176,196,222,0.47); border-radius: 4px; padding:5px;">
+                    <span class="text-muted float-right" id="a_min_value"
+                          style="font-size:0.8em; margin:2%;"></span>
+                <label for="awv">AWV
+                <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">$</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm" name="awv" id="awv" tabindex="18"
+                               value="{{ data['awv'] }}" oninput="calc_cmp()">
+                </div>
+                </label><br/>
+
+
+                <label for="mmr">MMR
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">$</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm"
+                               name="mmr" id="mmr" tabindex="19"
+                               value="{{ data['mmr'] if data['mmr']}}"
+                               oninput="calc_cmp()">
+                    </div>
+                </label><br/>
+
+                <label for="cash-price">Cash Price
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">$</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm" name="cash_price" id="cash_price"
+                               tabindex="20" value="{{ data['cash_price'] if data['cash_price'] }}"
+                               oninput="calc_cmp()">
+                    </div>
+                </label>
+                </div>
+
+
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-xl-2">
+                <label for="balance-repo">Balance on Repo Date
+                <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">$</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm" name="balance_repo_date"
+                               id="balance_repo_date" tabindex="21" value="{{ data['balance_repo_date'] }}">
+                </div>
+                </label><br/>
+                <label for="damages">Chargeable Damages
+                <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">$</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm" name="chargeable_damages"
+                               id="chargeable_damages" tabindex="22" value="{{ data['chargeable_damages'] }}">
+
+                </div>
+                </label><br/>
+
+                <label for="be-cancels">Back End Cancellations
+                <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">$</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm"
+                               name="back_end_product_cancellation" id="back_end_product_cancellation" tabindex="23"
+                               value="{{ data['back_end_product_cancellation'] }}">
+                </div>
+                </label><br/>
+
+                <label for="insurance-claims">Insurance Claims
+                <div class="input-group mb-3">
+
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">$</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm"
+                               name="insurance_claims" id="insurance_claims" tabindex="24"
+                               value="{{ data['insurance_claims'] }}">
+                </div>
+                </label><br/>
+
+                <label for="unearned-discounts">Unearned Discount
+                <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">$</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm"
+                               name="unearned_discount" id="unearned_discount"
+                               tabindex="25"
+                               value="{{ data['unearned_discount'] }}"
+                               oninput="calc_net()">
+                </div>
+                </label><br/>
+                <label for="actual-proceeds">Actual Proceeds
+                <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">$</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm" name="actual_proceeds"
+                               id="actual_proceeds" tabindex="26"
+                               value="{{ data['actual_proceeds'] }}" oninput="calc_gross_co()"
+                               onchange="confirm_status()">
+                </div>
+                </label><br/>
+
+{#                <label for="reason">Reason / Comments#}
+{#                        <select class="form-control" name="reason" id="reason" tabindex="27" required>#}
+{#                            <option value="" selected></option>#}
+{#                            <option value="Abandoned">abandoned</option>#}
+{#                            <option value="BK">bK</option>#}
+{#                            <option value="Burned / no insurance">burned/no insurance</option>#}
+{#                            <option value="Buyback abandoned unit">buyback abandoned unit</option>#}
+{#                            <option value="Buyback default / legal">buyback default / legal</option>#}
+{#                            <option value="Dealer buyback default / legal">dealer buyback default / legal</option>#}
+{#                            <option value="Dealer default">dealer default</option>#}
+{##}
+{#                            <option value="Gain / insurance deficiency">gain / insurance deficiency</option>#}
+{#                            <option value="Hostage unit / legal failed">hostage unit / legal failed</option>#}
+{#                            <option value="Impound / abandoned">impound / abandoned</option>#}
+{#                            <option value="Impound / wrecked">impound / wrecked</option>#}
+{#                            <option value="INS shortage / net gain">INS shortage / net gain</option>#}
+{#                            <option value="Insurance deficiency">insurance deficiency</option>#}
+{##}
+{#                            <option value="Low balance / charge off">low balance / charge off</option>#}
+{#                            <option value="Mechanics lien / abandoned">mechanics lien / abandoned</option>#}
+{#                            <option value="Open file --BK / GAAP impairment">open file --BK / GAAP impairment</option>#}
+{#                            <option value="Police hold / impound">police hold / impound</option>#}
+{#                            <option value="Repair loan">repair loan</option>#}
+{#                            <option value="Settled account">settled account</option>#}
+{##}
+{#                            <option value="Settled buyback account">settled buyback account</option>#}
+{#                            <option value="Settled legal complaint">settled legal complaint</option>#}
+{#                            <option value="Skip">skip</option>#}
+{#                            <option value="Skip / legal action failed">skip / legal action failed</option>#}
+{#                            <option value="Skip / recovered">skip / recovered</option>#}
+{#                            <option value="Stolen / no insurance">stolen / no insurance</option>#}
+{#                            <option value="Totaled / no insurance">totaled / no insurance</option>#}
+{#                            <option value="Totaled / abandoned / no insurance">totaled / abandoned / no insurance</option>#}
+{#                            <option value="Stolen / no insurance">stolen / no insurance</option>#}
+{#                            <option value="Wrecked / impound / bk">wrecked / impound / bk</option>#}
+{#                            <option value="Wrecked / no insurance">wrecked / no insurance</option>#}
+{#                        </select>#}
+{#                    </label>#}
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-xl-2">
+
+            <h5>Calculated Values</h5>
+                <br/>
+            <table class="table table-borderless table-sm">
+                <tbody>
+                <tr><td>Current Month Proceeds:</td><td id="curr_mo_proceeds" style="text-align:right;">{{ data['current_mo_proceeds_estimate'] if data['current_mo_proceeds_estimate'] }}</td></tr>
+                <tr><td>EOM GAAP Proceeds:</td><td id="eom-gaap-proceeds" style="text-align:right;">{{ data['eom_gaap_proceeds_estimate'] if data['eom_gaap_proceeds_estimate']}}</td></tr>
+                <tr><td>Gross C/O Amount:</td><td id="gross_co_amount" style="text-align:right;"></td></tr>
+                <tr><td>Net Gain / Loss: </td><td id="disp_net_loss_or_gain" style="text-align:right;">{{ data['net_loss_or_gain']}}</td></tr>
+                <tr><td>Difference: </td><td id="disp_acct_diff" style="text-align:right;">{{ 100*data['acct_diff']|round(3) if data['acct_diff'] }}%</td></tr>
+                <!--<tr><td>Difference: </td><td id="disp_acct_diff" style="text-align:right;"></td></tr>-->
+                <tr><td>Allow2:</td><td id="allow2" style="text-align:right;">{{ (100*data['repo_allow2_hist'])|round(1) if data['repo_allow2_hist'] }}%</td></tr>
+                <tr><td>Proforma NRV: </td><td id="pforma_nrv" style="text-align:right;">{{ data['pforma_nrv'] if data['pforma_nrv'] else '' }}</td></tr>
+                <tr><td>Proforma G/L:</td><td id="pforma_gl" style="text-align:right;">{{ data['pforma_gl'] if data['pforma_gl'] else ''}}</td></tr>
+                <tr><td>Proforma Diff %: </td><td id="pforma_diff" style="text-align:right;">{{ (100*data['pforma_diff'])|round(1) if data['pforma_diff'] else ''}}%</td></tr>
+                </tbody>
+
+            </table>
+                <input type="hidden" value="{{ data['year'] }}" id="year" name="year" onchange="check_required()" disabled><br/>
+                <input type="hidden" value="{{ data['make'] }}" id="make" name="make" disabled><br/>
+                <input type="hidden" value="{{ data['model'] }}" id="model" name="model" disabled><br/>
+                <input type="hidden" value="{{ data['trim'] }}" id="trim" name="trim" disabled><br/>
+                <input type="hidden" value="{{ data['acct_min_val'] }}" id="acct_min_val" name="acct_min_val"><br/>
+                <input type="hidden" value="{{ data['acct_gain_loss'] }}" id="acct_gain_loss" name="acct_gain_loss"><br/>
+                <input type="hidden" value="{{ data['acct_diff'] }}" id="acct_diff" name="acct_diff"><br/>
+                <input type="hidden" value="{{ data['acct_repo_month'] }}" id="acct_repo_month" name="acct_repo_month"><br/>
+                <input type="hidden" value="{{ data['months_in_inventory'] }}" id="months_in_inventory" name="months_in_inventory" disabled><br/>
+                <input type="hidden" value="{{ data['gross_co_amt'] }}" id="gross_co_amt" name="gross_co_amt" onchange="calc_net()" disabled><br/>
+                <input type="hidden" value="{{ data['net_loss_or_gain'] }}" id="net_loss_or_gain" name="net_loss_or_gain" disabled><br/>
+                <input type="hidden" class="form-control form-control-sm" name="eom_gaap_proceeds_estimate"
+                               id="eom_gaap_proceeds_estimate" tabindex="24" disabled
+                               value="{{ data['eom_gaap_proceeds_estimate'] if data['eom_gaap_proceeds_estimate']}}"><br/>
+                <input type="hidden" class="form-control form-control-sm" name='current_mo_proceeds_estimate'
+                               id='current_mo_proceeds_estimate' tabindex="23" disabled
+                               value="{{ data['current_mo_proceeds_estimate'] if data['current_mo_proceeds_estimate'] }}"><br/>
+
+            </div>
+        </div>
+</div>
+
+<script type="text/javascript" src="/static/js/decode-vin.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-firestore.js"></script>
+<script type="text/javascript" src="/static/dist/js/BsMultiSelect.js"></script>
+<script src="/static/js/repo.js"></script>
+<script type="text/javascript"  src="/static/js/repo-2.js"></script>
+{% endblock %}

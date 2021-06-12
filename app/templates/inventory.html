@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block content %}
+    {% include 'nav.html' %}
+
+<div class="container vh-100">
+        <div class="row">
+            <div class="col">
+
+            </div>
+        </div>
+        <div class="row">
+            <!--<div class="col">
+                <div class="h-100 p-2" style="background-color:rgb(222, 226, 230); min-height: 500px;">
+                    <span class="pull-right text-muted">Inventory value over time</span>
+                </div>
+            </div>-->
+        </div>
+
+    <div class="row">
+        <div class="col-xs col-sm col-md-6 col-lg-6">
+            <br/><br/>
+            <h5>Current Inventory Valuation
+                    <small class="pull-right text-muted" id="repoCount">{{ repo_count }}</small><small> as of <span id="asof"></span></small>
+            </h5>
+                <table class="table table-striped table-sm">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th></th>
+                        <th style="text-align: right;">Total</th>
+                        <th style="text-align: right;">Average</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Repo Inventory GROSS</td>
+                        <td id="gross" style="text-align: right;">{{ gross }}</td>
+                        <td id="avgGross" style="text-align: right;"></td>
+                    </tr>
+                    <tr>
+                        <td>Less Val Allow <span style="font-size:0.9em; color:gray;">&nbsp;{{ 100*allow_val|round(2) }}%</span></td>
+                        <td id="allow" style="text-align: right;">{{ allow }}</td>
+                        <td id="avgAllow" style="text-align: right;"></td>
+                    </tr>
+                    <tr>
+                        <td>Repo Inventory NET</td>
+                        <td id="net" style="text-align: right;">{{ net }}</td>
+                        <td id="avgNet" style="text-align: right;"></td>
+                    </tr>
+                    </tbody>
+                </table>
+        </div>
+        <div class="col-xs col-sm col-md-6 col-lg-6">
+            <br/><br/>
+            <h5>Components Account
+                    <small class="pull-right text-muted" id="repoCount">{{ repoAcc_count }}</small><small> </small>
+            </h5>
+                <table class="table table-striped table-sm">
+                    <thead class="thead-dark">
+                    <tr>
+                        
+                        <th style="text-align: left;">Loan #</th>
+                        <th style="text-align: left;">Status</th>
+                        <th style="text-align: left;">GAAP DATE</th>
+                        <th style="text-align: left;">EOM Gaap Proceeds </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for acct in repoAcc %}
+                    <tr>
+                        <td><a href="/repo/{{acct.loan}}">{{acct.loan}}</td>
+                        <td>
+                        {{acct.status}}</td>
+                        <td>{{acct.gaap_date.strftime('%m-%d-%Y')}} </td>
+                        <td>{{acct.eom_gaap_proceeds_estimate}}</td>
+                       
+                    </tr>
+                    {% endfor %}
+                   
+                    </tbody>
+                </table>
+        </div>
+    </div>
+</div>
+    <script src="/static/js/inventory.js"></script>
+
+
+
+{% endblock %}

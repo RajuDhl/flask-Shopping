@@ -1,0 +1,94 @@
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+
+    <span class="navbar-brand">SameDay Record Management</span>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            {#{% if 'Repo Log' in user['permission']%}#}
+            {% if  current_user.has_roles('Repo') %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="/repo-log">Repo Log</a>
+                </li>
+            {%endif%}
+            {#{% if 'Extension Log' in user['permission']%}#}
+            {% if  current_user.has_roles('Extension') %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="/extension-log">Extension Log</a>
+                </li>
+            {%endif%}
+            {#{% if 'Title Follow-Up' in user['permission']%} #}
+            {% if  current_user.has_roles('Title') %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="/title-follow-up">Title FollowUp</a>
+                </li>
+            {%endif%}
+{#            {% if 'PIF Log' in user['permission']%} #}
+            {% if  current_user.has_roles('Pif') %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="/pif-log">PIF Log</a>
+                </li> 
+            {%endif%}
+            <!-----
+            {% if 'Report' in user['permission']%} 
+                 <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                        Reports
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/allow2">Allow2 tables</a>
+                        <a class="dropdown-item" href="/inventory">Inventory</a>
+                        <a class="dropdown-item" href="/nco">NCO</a>
+                        <a class="dropdown-item" href="/reinstated">Reinstated</a>
+                    </div>
+                </li>
+            {%endif%}----->
+
+          <!--- <li class="nav-item dropdown">
+                 <a class="nav-link" href="/extension-log">Extension Log</a>
+            </li>--->
+
+
+            {% if current_user.has_roles('Admin') %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="/repo-log">Repo Log</a>
+                </li>
+{#                <li class="nav-item dropdown">#}
+{#                    <a class="nav-link" href="/pif-log">PIF Log</a>#}
+{#                </li>#}
+{#                <li class="nav-item dropdown">#}
+{#                    <a class="nav-link" href="/extension-log">Extension Log</a>#}
+{#                </li>#}
+{#                <li class="nav-item dropdown">#}
+{#                    <a class="nav-link" href="/title-follow-up">Title Followup</a>#}
+{#                </li>#}
+                <!--------------
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                        Reports
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/allow2">Allow2 tables</a>
+                        <a class="dropdown-item" href="/inventory">Inventory</a>
+                        <a class="dropdown-item" href="/nco">NCO</a>
+                        <a class="dropdown-item" href="/reinstated">Reinstated</a>
+                    </div>
+                </li>--------->
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/users">Users</a>
+                </li>
+            {% endif %}
+
+            <!--<li class="nav-item">
+              <a class="nav-link" href="/support">Support</a>
+            </li>-->
+           <li class="nav-item">
+                <a class="nav-link" href="/logout">Log out</a>
+            </li>
+        </ul>
+    </div>
+</nav>

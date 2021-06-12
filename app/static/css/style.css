@@ -1,0 +1,70 @@
+:root{
+    /*--brick: #924A31;
+    --brick-hover: blue;*/
+}
+body{
+
+    font-family: 'Varela Round', sans-serif;
+
+}
+th, td{
+    font-size:0.8em;
+
+}
+th{border: 1px solid lightgray;}
+input[type=text], input[type=password], input[type=number], input[type=tel],
+input[type=phone], input[type=email], input[type=date] select {
+    max-width: 300px;
+}
+.alert {max-width: 300px;}
+
+.btn-outline-secondary:hover{
+    background-color:#222222;
+}
+.btn>.active:hover{
+    background-color:#222222;
+}
+
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_asc_disabled:before,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_desc:before,
+table.dataTable thead .sorting_desc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:before {
+bottom: .5em;
+}
+
+.usd{
+    text-align:center;
+    color:blue;
+}
+table {
+    max-width: none;
+}
+@media only screen and (max-width: 600px) {
+    #date-range {
+        display: none;
+}
+}
+.min{
+    color:gray;
+    font-size:0.8em;
+    margin-left:15px;
+}
+
+#repo-log{
+    margin:15px;
+    width: 100% !important;
+}
+
+
+
+@media screen and (max-width: 768px) {
+    #date-range{
+    display: none;
+}
+}

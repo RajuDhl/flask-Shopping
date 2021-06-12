@@ -1,0 +1,152 @@
+{
+  "3824.1": {
+      "loan": 3824.1,
+      "cr_grade": null,
+      "year": 2011,
+      "acct_gain_loss": 0,
+      "cash_price": 8800,
+      "model": "Ram",
+      "actual_proceeds": 0,
+      "customer_name": "AUSTIN BROWN",
+      "current_mo_proceeds_estimate": null,
+      "acct_sold_month": null,
+      "mmr": 8800,
+      "chargeable_damages": null,
+      "vin": "1D7RV1GT6BS640788",
+      "unearned_discount": 77.64,
+      "last_update": {
+        "__datatype__": "timestamp",
+        "value": {
+          "_seconds": 1610209790,
+          "_nanoseconds": 835931000
+        }
+      },
+      "dealer": "THE CAR GUY",
+      "mileage": 131239,
+      "dafs": {
+        "__datatype__": "timestamp",
+        "value": {
+          "_seconds": 1610689920,
+          "_nanoseconds": 0
+        }
+      },
+      "status": "Reinstate",
+      "balance_repo_date": 12322.35,
+      "awv": null,
+      "estimated_recovery": 0.71,
+      "location": "CARS",
+      "gross_co_amt": -6074.35,
+      "repo_category": [
+        "Skip"
+      ],
+      "net_loss_or_gain": -5996.71,
+      "gaap_date": {
+        "__datatype__": "timestamp",
+        "value": {
+          "_seconds": 1609825920,
+          "_nanoseconds": 0
+        }
+      },
+      "sold_to": "",
+      "co_date": null,
+      "acct_repo_month": "Jan-21",
+      "trim": "1500",
+      "months_in_inventory": null,
+      "last_editor": "kevin.atherton@samedayauto.net",
+      "insurance_claims": 0,
+      "acct_diff": 0,
+      "reason": "",
+      "date_sold": null,
+      "noi_sent": {
+        "__datatype__": "timestamp",
+        "value": {
+          "_seconds": 1609825920,
+          "_nanoseconds": 0
+        }
+      },
+      "Account_Number": 1,
+      "acct_min_val": 0,
+      "date_reinstate": {
+        "__datatype__": "timestamp",
+        "value": {
+          "_seconds": 1610171520,
+          "_nanoseconds": 0
+        }
+      },
+      "notes": "",
+      "back_end_product_cancellations": 0,
+      "eom_gaap_proceeds_estimate": null,
+      "make": "DODGE",
+      "__collections__": {}
+    },
+  "5598.1": {
+    "model": "CLS",
+    "months_in_inventory": 4.3,
+    "co_date": null,
+    "reason": "",
+    "estimated_recovery": null,
+    "same_month_sale": "",
+    "customer_name": "",
+    "loan": 5598.1,
+    "net_loss_or_gain": null,
+    "sold_to": "",
+    "chargeable_damages": 0,
+    "location": "",
+    "dafs": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1595530799,
+        "_nanoseconds": 99000
+      }
+    },
+    "status": "Reinstate",
+    "repo_allow2_(hist)": "",
+    "mileage": null,
+    "gaap_date": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1594666799,
+        "_nanoseconds": 99000
+      }
+    },
+    "cash_or_new_ac": "",
+    "balance_repo_date": 4517.79,
+    "min_val": "",
+    "date_sold": null,
+    "cr_grade": null,
+    "insurance_claims": 0,
+    "gain_(loss)": "",
+    "noi_sent": {
+      "__datatype__": "timestamp",
+      "value": {
+        "_seconds": 1594666799,
+        "_nanoseconds": 99000
+      }
+    },
+    "exception": "",
+    "year": 2006,
+    "mmr": null,
+    "exception_detail": "",
+    "dealer": "CARCHOICE DFW",
+    "name": "",
+    "vin": "WDDDJ75XX6A022822",
+    "recovery": null,
+    "unearned_discount": 0,
+    "acct_min_val": null,
+    "diff": "",
+    "acct_repo_month": "Jul-20",
+    "back_end_product_cancellation": 0,
+    "current_mo_proceeds_estimate": null,
+    "gross_co_amt": null,
+    "notes": "",
+    "Account_Number": 1,
+    "awv": null,
+    "actual_proceeds": null,
+    "rem_bal": null,
+    "make": "MERCEDES",
+    "repo_mo": "Jul-20",
+    "eom_gaap_proceeds_estimate": null,
+    "cash_price": null,
+    "__collections__": {}
+  }
+}

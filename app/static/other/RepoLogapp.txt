@@ -1,0 +1,183 @@
+# %%
+import os
+import pandas as pd
+import numpy as np
+from datetime import datetime
+from sqlalchemy import create_engine
+from google.cloud import firestore
+from google.oauth2.service_account import Credentials
+import urllib
+import pyodbc
+from datawarehouse import query, uploadTable, execSQL 
+import logging as lg
+from sdalogger import LogDBHandler
+from datetime import datetime as dt
+from mailer import sendEmail
+from pathlib import Path
+
+from azure.identity import DefaultAzureCredential
+from azure.keyvault.secrets import SecretClient
+
+credential = DefaultAzureCredential()
+vault_site = "samedayautokeyvault"
+key_client = SecretClient(f"https://{vault_site}.vault.azure.net/", credential)
+
+file_loc = Path('/mnt/c/PythonScripts/service-account.json')
+credentials = Credentials.from_service_account_file(file_loc)
+
+# credentials = Credentials.from_service_account_file("service-account.json")
+
+db = firestore.Client(project="same-day-auto", credentials=credentials)
+
+# set log error level
+log_error_level = 'DEBUG'
+# Call in Log Handler to write to SQL Server
+logdb = LogDBHandler('sda.Python_Processing_Log')
+lg.getLogger('').addHandler(logdb)
+
+#Set logger to this script
+logger = lg.getLogger('Py_Script_Rep_Log_App')
+logger.setLevel(log_error_level)
+
+
+# %%
+def backup_repos(sql_table_name):
+    then = datetime.now()
+    df = pd.DataFrame(
+        data=[doc.to_dict() for doc in db.collection('repos').where('gaap_date', '>=', datetime(2017, 11, 1)).stream()],
+        index=None)
+    print(f'writing Firestore repos collection to {sql_table_name}')
+    df['loan_str'] = df['loan'].astype(str)
+    df[['CUST_NUMBER', 'ACCOUNT_NUMBER']] = df.loan_str.str.split(".",expand=True,) 
+    df.drop(columns=['true_up_transaction', 'name', 'last_editor', 'last_update', 'true_up_amount',
+                     'back_end_product_cancellation', 'loan_str',
+                     'acct_diff', 'acct_gain_loss', 'acct_min_val', 'trim', 'year',
+                     'acct_repo_month', 'acct_sold_month', 'customer_name', 'date_reinstate', 'dealer',
+                     'loan', 'make', 'model', 'pforma_diff', 'pforma_gain_loss', 'pforma_nrv',
+                     'repo_allow2_hist', 'same_month_sale', 'trim', 'vin'], inplace=True)
+    
+    df.columns = df.columns.str.replace('_', '').str.upper()
+    
+    df.rename(columns={'ACCOUNTNUMBER': 'ACCOUNT_NUMBER',
+                       'CUSTNUMBER': 'CUST_NUMBER',
+                       'ESTIMATEDRECOVERY': 'ESTIMATEDRECOVERYPERC',
+                       'BACKENDPRODUCTCANCELLATIONS': 'BACKENDPRODUCTCANCELLATION',
+                       'REASON': 'REASONCOMMENTS'
+                       }, inplace=True)
+    
+    df.reset_index(drop=True, inplace=True)
+    #Sort so df and current_repo cols in same order to merge
+    df = df.reindex(columns=sorted(df.columns))
+        
+    df['ESTIMATEDRECOVERYPERC'].replace(['', np.nan], '0', inplace=True)
+    df['ESTIMATEDRECOVERYPERC'] = df['ESTIMATEDRECOVERYPERC'].astype("float64")
+    # Select Current records in SQL Server for compare / merge
+    sql_query = f"Select * From {sql_table_name}"
+    current_repo_log = query(sql_query)
+    df['ACCOUNT_NUMBER'] = df['ACCOUNT_NUMBER'].astype("int64")
+    
+    rec_cnts_new = df.shape[0]
+    rec_cnts_existing = current_repo_log.shape[0]
+    
+    logger.info('%s records imported from Firebase, %s records in SQL Server RepoLog.' % (rec_cnts_new, rec_cnts_existing), exc_info=1)
+
+    #Compare New records with Current, create new data frame with only
+    #New Records from Google DB
+    df_all = df.merge(current_repo_log, how='left', indicator=True, on=['CUST_NUMBER', 'ACCOUNT_NUMBER'], suffixes=('_leftside', '_rightside')).query('_merge == "left_only"').drop(['_merge'],axis=1)
+    # Drop rightside cols aka current repo log
+    df_all.drop(df_all.columns[df_all.columns.str.contains('_rightside')], axis=1, inplace=True)
+    #Remove _leftside from colums being kept
+    df_all.columns = df_all.columns.str.replace(r"_leftside", "")
+    
+    # # #Create list of float columns, the variable columns from pivot process 
+    col_list = []
+    col_list = list(df_all.columns[df_all.dtypes == np.float64])
+    # #Set values for 0 for Float Cols
+    df_all[(col_list)] = df_all[(col_list)].fillna(value=0)
+    # Strip whitespace in "object" cols
+    df_all = df_all.apply(lambda x: x.str.strip() if x.dtype == "object" else x)
+    #Set inf and blanks to 0 for floats
+    df_all = df_all.apply(lambda x: x.replace([-np.inf, np.inf, ""],0) if x.dtype == "float64" else x)
+    #Set all other missing records to nan(Null in SQL Server)
+    df_all.replace([-np.inf, np.inf, ""], np.nan, inplace=True)
+    
+    subject = "Repo_Log_App Process"
+    tablename = 'api.RepoLog'
+    total_new = df_all.shape[0]
+    if total_new == 0:
+        logger.info('No new records loaded for %s.' % tablename, exc_info=1)
+    else:
+        try:
+            uploadTable(df_all,"RepoLog",index=False,if_exists="append", schema="api", username="ApiAppServicesName", password="ApiAppServicesPassword")
+            logger.info('%s record(s) loaded to SQL Server %s.' % (total_new, tablename), exc_info=1)
+        except BaseException as be:
+            logger.error('Repo_log_app process was not able to load %s.' % tablename, exc_info=1) 
+            sendEmail("rodney.currin@samedayauto.net", "{0}", "Could not load records to {1}.").format(subject, tablename)
+    
+# %%
+def backup_supplemental_tables(sql_table_name, firestore_collection):
+    then = datetime.now()
+    df = pd.DataFrame(data=[doc.to_dict() for doc in db.collection(firestore_collection).stream()], index=None)
+    print(f'writing Firestore {firestore_collection} collection to {sql_table_name}')
+    # microsoft sql server only allows one timestamp dtype per table. Converting both timestamps to strings
+    
+    df['end'] = df['end'].apply(lambda d: str(datetime.timestamp(d)))
+    df['start'] = df['start'].apply(lambda d: str(datetime.timestamp(d)))
+    df.rename(columns={'avg': 'average',
+                       'end': 'end_timestamp',
+                       'start': 'start_timestamp',
+                       'count': 'unit_count',
+                       # 'months': 'months',
+                       'code': 'co_date',
+                       'weighted_avg': 'weighted_avg'
+                       }, inplace=True)
+    df.drop(columns='months', inplace=True)
+    df.reset_index(drop=True, inplace=True)
+    
+    df = df.reindex(columns=sorted(df.columns))
+    
+    # sql_query = f"Select * From {sql_table_name}"
+    # current_repo_log = query(sql_query)
+    
+    # print(df.info())
+    # print(df.head(25))
+
+    # df_all = df.merge(current_repo_log, how='left', indicator=True, on='code', suffixes=('_leftside', '_rightside')).query('_merge == "left_only"').drop(['_merge'],axis=1)
+    # df_all.drop(df_all.columns[df_all.columns.str.contains('_rightside')], axis=1, inplace=True)
+    # df_all.columns = df_all.columns.str.replace(r"_leftside", "")
+    
+    # print(df_all.head())
+
+    # repository_path = r'C:/Users/rcurrin/Documents/'
+
+    #     #Export Repository_Python
+    # df.to_csv (repository_path+'df_AllowDiscount.csv', index = None, header=True)
+    
+    # cannot .to_sql because do not have CREATE authority
+    # df.to_sql(sql_table_name, con=engine, if_exists='replace', index=False)
+    # x = df.to_dict(orient='records')
+    # columns = str(list(df.columns)).replace("]", "").replace("[", "").replace("'", "")
+    # #print(columns)
+    # # with engine.connect() as conn:
+    # # counter = 0
+    
+    # q = f"DELETE FROM {sql_table_name}"
+    # execSQL(q)
+    
+    # for row in x:
+    #     vals = str(list(row.values())).replace("]", "", 1).replace("[", "", -1)
+    #     query = f"INSERT INTO {sql_table_name} ({columns}) VALUES ({vals})"
+    #     execSQL(query)
+    #     #print(f'committed row {counter}')
+    #     # counter += 1
+    # # conn.close()
+    
+    
+    # print(f"Took {(datetime.now() - then).seconds} seconds")
+
+# %%
+
+if __name__ == '__main__':
+    backup_repos(sql_table_name='api.RepoLog')
+    # backup_supplemental_tables(sql_table_name='api.ValAllow', firestore_collection='val_allow')
+    # backup_supplemental_tables(sql_table_name='api.AllowDiscount', firestore_collection='real_disc_to_nrv')
